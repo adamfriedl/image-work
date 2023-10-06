@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-deploy
+  labels:
+    name: ping-deploy
+    app: demo-ping-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ping-app-pod
+      app: demo-ping-app
+  template:
+    metadata:
+      name: ping-app-pod
+      labels:
+        name: ping-app-pod
+        app: demo-ping-app
+    spec:
+      containers:
+      - name: ping-app
+        image: adamfriedl/image-work:latest
+        ports:
+        - containerPort: 8080
